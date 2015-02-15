@@ -2,3 +2,45 @@
 // endbower
 
 @import "font-awesome";
+
+//Colors
+$bg-light-color: #EAEAEA;
+$in:#6FA323;
+$out:#F52B2B;
+
+.wallet {
+  margin-top: 10px;
+  background-color: $bg-light-color;
+  font-size: 2.3em;
+  text-align: center;
+  padding: 25px 0;
+  border-radius: 3px;
+  & i {
+    margin-left: 20px;
+  }
+}
+
+.action-container {
+  margin-top: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  .action{
+    clear: both;
+    float: left;
+    font-size: 2.3em;
+  }
+  .input {
+    vertical-align: middle;
+  }
+}
+
+.btn-default {
+  border:none;
+}
+
+.in {
+  color:$in;
+}
+.out {
+  color:$out;
+}
