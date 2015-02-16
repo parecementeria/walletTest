@@ -24,7 +24,7 @@ angular.module('walletappApp')
         $scope.data = localStorageService.get('data');
       }
     }
-    initData();
+    initData($scope);
 
     $scope.addAmount = function(amount) {
       $scope.data.totalAmount = $scope.data.totalAmount * 1 + amount * 1;
@@ -48,10 +48,5 @@ angular.module('walletappApp')
         $window.alert('You don`t have enought money!. Please try other amount');
       }
     };
-
-    // $scope.resetData = function() {
-    //   localStorageService.clearAll();
-    //   initData();
-    // };
 
   });

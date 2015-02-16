@@ -25,6 +25,7 @@ angular
         controller: 'MainCtrl'
       })
       .when('/reset', {
+        template:'',
         controller:'ResetCtrl'
       })
       .otherwise({
