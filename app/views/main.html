@@ -1,25 +1,45 @@
 <div class="container">
   <span>Select your currency: </span>
-  <select ng-model="currentCurrency" ng-options="currency for currency in currencies" ng-change="currencyChanged()"></select>
+  <select 
+    ng-model="currentCurrency" 
+    ng-options="currency for currency in currencies" 
+    ng-change="currencyChanged()">
+  </select>
 </div>
 
 <div class="container">
 
+<!-- wallet and action form -->
   <div class="col-md-6 wallet">
-    <i class="fa " ng-class="'fa-'+ currentCurrency"></i> {{data.totalAmount | number:2}}
+    <i class="fa " ng-class="'fa-'+ currentCurrency"></i>
+    {{data.totalAmount | number:2}}
   </div>
 
   <div class="col-md-6 action-container">
     <div class="col-xs-2">
-      <button type="button" class="btn btn-default" ng-click='addAmount(amount)' ng-disabled="myForm.$invalid"><i class="fa fa-chevron-left in action"></i></button>
-      <button type="button" class="btn btn-default" ng-click='removeAmount(amount)' ng-disabled="myForm.$invalid"><i class="fa fa-chevron-right out action"></i></button>
+      <button 
+        type="button" 
+        class="btn btn-default" 
+        ng-click='addAmount(amount)' 
+        ng-disabled="myForm.$invalid">
+        <i class="fa fa-chevron-left in action"></i>
+      </button>
+      <button 
+        type="button" 
+        class="btn btn-default" 
+        ng-click='removeAmount(amount)' 
+        ng-disabled="myForm.$invalid">
+        <i class="fa fa-chevron-right out action"></i>
+      </button>
     </div>
 
-    <div class="col-xs-10 input form-group" ng-form name="myForm" ng-class="{'has-error':myForm.myInput.$error.pattern} ">
+    <div class="col-xs-10 input form-group" ng-form name="myForm" 
+      ng-class="{'has-error':myForm.myInput.$error.pattern} ">
       <input name="myInput" type="num" class="form-control" ng-model="amount" ng-pattern="/^(\d)+$/" required>
       <span class="control-label" ng-show="myForm.myInput.$error.pattern">Please enter a valid number!</span>
     </div>
   </div>
 </div>
 
+<!-- movements history -->
 <di-history></di-history>

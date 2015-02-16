@@ -52,8 +52,12 @@ angular.module('walletappApp')
     };
 
     $scope.$watch('currentCurrency', function(newValue, oldValue) {
+      console.log(oldValue + ' to ' + newValue);
       var changeRate = currencyConverter.convertCurrency(newValue, oldValue);
       $scope.data.totalAmount = ($scope.data.totalAmount * changeRate);
+      $scope.currentCurrency = newValue;
+      localStorageService.set('currentCurrency', $scope.currentCurrency);
+      localStorageService.set('data', $scope.data);
     });
 
   });
