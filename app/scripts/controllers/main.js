@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('walletappApp')
-  .controller('MainCtrl', function ($scope, $window, localStorageService) {
+  .controller('MainCtrl', function ($scope, $window, localStorageService, currencyConverter) {
 
     function initData() {
       if(localStorageService.keys().length === 0){
@@ -10,7 +10,6 @@ angular.module('walletappApp')
         $scope.amount = '';
         $scope.data = {
           totalAmount:0,
-          currentCurrency:$scope.currentCurrency,
           movements:[]
         };
         localStorageService.set('currencies', $scope.currencies);
@@ -24,13 +23,13 @@ angular.module('walletappApp')
         $scope.data = localStorageService.get('data');
       }
     }
-    initData($scope);
+    initData();
 
     $scope.addAmount = function(amount) {
       $scope.data.totalAmount = $scope.data.totalAmount * 1 + amount * 1;
       $scope.amount = '';
       var movement = {type:'in', amount: amount, currency: $scope.currentCurrency, date: Date.now()};
-      $scope.data.movements.push(movement);
+      $scope.data.movements.unshift(movement);
       localStorageService.set('data', $scope.data);
       localStorageService.set('amount', $scope.amount);
     };
@@ -40,7 +39,7 @@ angular.module('walletappApp')
         $scope.data.totalAmount = $scope.data.totalAmount *1 - amount * 1;
         $scope.amount = '';
         var movement = {type:'out', amount: amount, currency: $scope.currentCurrency, date: Date.now()};
-        $scope.data.movements.push(movement);
+        $scope.data.movements.unshift(movement);
         localStorageService.set('data', $scope.data);
         localStorageService.set('amount', $scope.amount);
       }
@@ -48,5 +47,10 @@ angular.module('walletappApp')
         $window.alert('You don`t have enought money!. Please try other amount');
       }
     };
+
+    $scope.$watch('currentCurrency', function(newValue, oldValue) {
+      var changeRate = currencyConverter.convertCurrency(newValue, oldValue);
+      $scope.data.totalAmount = ($scope.data.totalAmount * changeRate);
+    });
 
   });
