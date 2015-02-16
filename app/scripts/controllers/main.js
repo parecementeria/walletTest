@@ -5,6 +5,7 @@ angular.module('walletappApp')
 
     function initData() {
       if(localStorageService.keys().length === 0){
+        //default scope values
         $scope.currencies = ['gbp', 'euro', 'usd'];
         $scope.currentCurrency = $scope.currencies[0];
         $scope.amount = '';
@@ -12,11 +13,13 @@ angular.module('walletappApp')
           totalAmount:0,
           movements:[]
         };
+        //setting up default local storage
         localStorageService.set('currencies', $scope.currencies);
         localStorageService.set('amount', $scope.amount);
         localStorageService.set('currentCurrency', $scope.currentCurrency);
         localStorageService.set('data', $scope.data);
       } else {
+        //setting up scope variables from local storage
         $scope.currencies = localStorageService.get('currencies');
         $scope.currentCurrency = localStorageService.get('currentCurrency');
         $scope.amount = localStorageService.get('amount');
