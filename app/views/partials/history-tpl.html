@@ -4,7 +4,7 @@
     <table class="table table-bordered">
       <tr ng-repeat="movement in data.movements" ng-class="movement.type">
         <td>{{movement.amount}}</td>
-        <td>{{movement.currency.name}}</td>
+        <td>{{movement.currency}}</td>
         <td>{{movement.date | date}}</td>
       </tr>
     </table>

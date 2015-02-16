@@ -1,12 +1,12 @@
 <div class="container">
   <span>Select your currency: </span>
-  <select ng-model="currentCurrency" ng-options="currency.name for currency in currencies"></select>
+  <select ng-model="currentCurrency" ng-options="currency for currency in currencies"></select>
 </div>
 
 <div class="container">
 
   <div class="col-md-6 wallet">
-    <i class="fa " ng-class="'fa-'+ currentCurrency.name"></i> {{data.totalAmount}}
+    <i class="fa " ng-class="'fa-'+ currentCurrency"></i> {{data.totalAmount}}
   </div>
 
   <div class="col-md-6 action-container">

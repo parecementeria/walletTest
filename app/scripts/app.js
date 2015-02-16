@@ -16,13 +16,16 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ngStorage'
+    'LocalStorageModule'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
+      })
+      .when('/reset', {
+        controller:'ResetCtrl'
       })
       .otherwise({
         redirectTo: '/'
